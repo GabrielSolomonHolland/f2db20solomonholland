@@ -1,0 +1,19 @@
+extends layout
+
+block content
+  h1= title
+
+  -var car1 = {model:"Focus", mileage:35,numWheels:4,maxSpeed:120}
+  -var car2 = {model:"Insight",mileage:45, numWheels:4,maxSpeed:90}
+  -var car3 = {model:"Motorcycle",mileage:30,numWheels:2,maxSpeed:70}
+  -let results =[car1, car2, car3]
+
+  div.container-fluid
+  each item in results
+    div.row=item["model"]
+      div.col-sm-2="Mileage: " + item["mileage"]
+      div.col-sm-2="Number of wheels: " + item["numWheels"]
+      div.col-sm-2="Maximum speed: " + item["maxSpeed"]
+
+  //const car = {type:"Fiat", model:"500", color:"white"};
+  //so attributes will be: model (string), mileage(number), num of wheels (guess the data type :p), max speed (num)

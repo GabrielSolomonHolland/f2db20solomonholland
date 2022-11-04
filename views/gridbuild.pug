@@ -1,0 +1,27 @@
+extends layout
+
+block content
+  h1= title
+
+  - rows=Number(query.rows)
+  - columns=Number(query.cols)
+
+  if(!Number.isInteger(rows))
+    p() Rows must be numbers
+  else if(!Number.isInteger(columns))
+    p() Columns must be numbers
+  else if(columns>10 || columns<1)
+    p() Columns must be between 1 and 10
+  else if(rows>10 || rows<1)
+    p() Rows must be between 1 and 10
+  else
+    table#outer
+      - for(let i=0; i<rows; i++){
+        tr#middle
+          - for(let j=0;j<columns;j++){
+            td= 1+i+j*rows
+          -}
+      -}
+
+  //- p() "Rows: " + rows
+  //- p() "Columns: " + columns

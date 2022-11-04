@@ -1,0 +1,23 @@
+extends layout
+
+block content
+  h1= title
+  p Welcome to Gabriel's assignment 10
+  input(type="button", class="btn btn-secondary" onClick = "doBump()" value="This is a button")
+  div(id="bump") Bump the count
+
+
+  script.
+    var count = 0
+    var bump = 1
+    function doBump()
+    {
+      count+=bump 
+      bump++
+      out=document.getElementById("bump")
+      out.innerHTML=`Count ${count} with bump ${bump}`
+    }
+    //j u v z = initials for potential class
+    //i'll use... vehicles? j u v z are difficult ones
+    //so attributes will be: model (string), mileage(number), num of wheels (guess the data type :p), max speed (num)
+

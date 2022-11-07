@@ -20,6 +20,15 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+
+require('dotenv').config(); 
+const connectionString =  
+process.env.MONGO_CON 
+mongoose = require('mongoose'); 
+mongoose.connect(connectionString,  
+{useNewUrlParser: true, 
+useUnifiedTopology: true}); 
+
 //default
 app.use('/', indexRouter);
 app.use('/vehicle', vehicleRouter);
@@ -41,5 +50,14 @@ app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.render('error');
 });
+
+//Get the default connection 
+var db = mongoose.connection; 
+ 
+//Bind connection to error event  
+db.on('error', console.error.bind(console, 'MongoDB connection error:')); 
+
+db.once("open", function(){ 
+  console.log("Connection to DB succeeded")}); 
 
 module.exports = app;

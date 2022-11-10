@@ -8,6 +8,7 @@ var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var vehicleRouter = require('./routes/vehicles');
 var gridbuildRouter = require('./routes/gridbuild');
+var resourceRouter = require('./routes/resource');
 var app = express();
 
 var vehicle = require("./models/vehicle")
@@ -22,7 +23,8 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-app.use('/vehicle',vehicleRouter)
+//app.use('/vehicle',vehicleRouter)
+app.use('/routes',resourceRouter)
 
 
 require('dotenv').config(); 

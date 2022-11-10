@@ -10,6 +10,9 @@ var vehicleRouter = require('./routes/vehicles');
 var gridbuildRouter = require('./routes/gridbuild');
 var app = express();
 
+var vehicle = require("./models/vehicle")
+console.log("model imported")
+
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
@@ -19,6 +22,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+app.use('/vehicle',vehicleRouter)
 
 
 require('dotenv').config(); 
@@ -32,6 +36,7 @@ useUnifiedTopology: true});
 //default
 app.use('/', indexRouter);
 app.use('/vehicle', vehicleRouter);
+console.log("app using class")
 app.use('/gridbuild', gridbuildRouter);
 app.use('/users', usersRouter);
 
@@ -59,5 +64,32 @@ db.on('error', console.error.bind(console, 'MongoDB connection error:'));
 
 db.once("open", function(){ 
   console.log("Connection to DB succeeded")}); 
+ 
+let reseed = true; 
+if (reseed) { recreateDB();} 
+
+// We can seed the collection if needed on 
+//server start 
+async function recreateDB(){ 
+  // Delete everything 
+  await vehicle.deleteMany(); 
+ 
+  let instance1 = new vehicle({model:"Focus",numWheels:4,mileage:30}); 
+  let instance2 = new vehicle({model:"Insight",numWheels:4,mileage:40});
+  let instance3 = new vehicle({model:"Harley",numWheels:2,mileage:15});
+  instance1.save( function(err,doc) { 
+      if(err) return console.error(err); 
+      console.log("First object saved") 
+  }); 
+  instance2.save( function(err,doc) { 
+    if(err) return console.error(err); 
+    console.log("Second object saved") 
+}); 
+  instance3.save( function(err,doc) { 
+  if(err) return console.error(err); 
+  console.log("Third object saved") 
+}); 
+}
+
 
 module.exports = app;

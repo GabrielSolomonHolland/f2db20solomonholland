@@ -18,9 +18,6 @@ exports.vehicle_detail = function(req, res) {
     res.send('NOT IMPLEMENTED: vehicle detail: ' + req.params.id); 
 }; 
  
-// Handle vehicle create on POST. 
-exports.vehicle_create_post = function(req, res) { 
-    // Handle Vehicle create on POST. 
 exports.vehicle_create_post = async function(req, res) { 
     console.log(req.body) 
     let document = new Vehicle(); 
@@ -39,7 +36,6 @@ exports.vehicle_create_post = async function(req, res) {
         res.status(500); 
         res.send(`{"error": ${err}}`); 
     }   
-}; 
 }; 
  
 // Handle Costume delete form on DELETE. 

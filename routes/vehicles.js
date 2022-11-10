@@ -8,4 +8,10 @@ router.get('/', function(req, res, next) {
   //res.render('vehicles', { title: 'Search Results' });
 });
 
+
+router.post('/',function(req,res,next)
+{
+  router.post('/',vehicle_controllers.vehicle_create_post);
+})
+
 module.exports = router;

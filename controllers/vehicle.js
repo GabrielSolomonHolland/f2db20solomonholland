@@ -44,14 +44,30 @@ exports.vehicle_create_post = async function(req, res) {
     }   
 }; 
  
-// Handle Costume delete form on DELETE. 
+// Handle vehicle delete form on DELETE. 
 exports.vehicle_delete = function(req, res) { 
     res.send('NOT IMPLEMENTED: vehicle delete DELETE ' + req.params.id); 
 }; 
- 
-// Handle Costume update form on PUT. 
-exports.vehicle_update_put = function(req, res) { 
-    res.send('NOT IMPLEMENTED: vehicle update PUT' + req.params.id); 
+
+// Handle Vehicle update form on PUT. 
+exports.vehicle_update_put = async function(req, res) { 
+    console.log(`update on id ${req.params.id} with body 
+${JSON.stringify(req.body)}`) 
+    try { 
+        let toUpdate = await Vehicle.findById( req.params.id) 
+        // Do updates of properties 
+        if(req.body.model)  
+               toUpdate.model = req.body.model; 
+        if(req.body.mileage) toUpdate.mileage = req.body.mileage; 
+        if(req.body.numWheels) toUpdate.numWheels = req.body.numWheels; 
+        let result = await toUpdate.save(); 
+        console.log("Sucess " + result) 
+        res.send(result) 
+    } catch (err) { 
+        res.status(500) 
+        res.send(`{"error": ${err}: Update for id ${req.params.id} 
+failed`); 
+    } 
 };
 
 //VIEWS 

@@ -8,6 +8,7 @@ router.get('/', function(req, res, next) {
   //res.render('vehicles', { title: 'Search Results' });
 });
 
+router.get('/detail', vehicleontrolers.vehicle_view_one_Page);
 
 router.post('/',function(req,res,next)
 {

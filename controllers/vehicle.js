@@ -130,3 +130,15 @@ exports.vehicle_update_Page =  async function(req, res) {
         res.send(`{'error': '${err}'}`); 
     } 
 };
+
+exports.vehicle_delete_Page = async function(req, res) { 
+    console.log("Delete view for id "  + req.query.id) 
+    try{ 
+        result = await Vehicle.findById(req.query.id) 
+        res.render('vehicledelete', { title: 'Vehicle Delete', toShow: result }); 
+    } 
+    catch(err){ 
+        res.status(500) 
+        res.send(`{'error': '${err}'}`); 
+    } 
+}; 

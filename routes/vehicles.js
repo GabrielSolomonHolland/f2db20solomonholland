@@ -9,5 +9,7 @@ router.get('/create', vehicle_controllers.vehicle_create_Page);
 
 router.get('/update', vehicle_controllers.vehicle_update_Page);
 
+router.get('/delete', vehicle_controllers.vehicle_delete_Page);
+
 
 module.exports = router;

@@ -22,7 +22,7 @@ router.delete('/vehicles/:id', vehicle_controller.vehicle_delete);
 router.put('/vehicles/:id', vehicle_controller.vehicle_update_put); 
  
 // GET request for one Vehicle. 
-router.get('/vehicles/:id', vehicle_controller.vehicle_detail); 
+router.get('/vehicles/:id', vehicle_controller.vehicle_detail); //
  
 // GET request for list of all Vehicle items. 
 router.get('/vehicles', vehicle_controller.vehicle_list); 

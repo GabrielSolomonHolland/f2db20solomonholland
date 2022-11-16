@@ -1,0 +1,25 @@
+extends layout
+block content
+  h1= title
+  if (toShow == null)
+    h2 Nothing to show 
+  else
+    - var vehicleid = toShow._id
+    - var vehiclemodel = toShow.model
+    - var vehiclemileage = toShow.mileage
+    - var vehiclenumwheels = toShow.numwheels
+
+  div
+
+  div.row
+  div(class='vehicleAttr mr-3') Vehicle ID is:
+  div #{vehicleid}
+  div.row
+  div(class='vehicleAttr mr-3') Vehicle Model is:
+  div #{vehiclemodel}
+  div.row
+  div(class='vehicleAttr mr-3') Vehicle mileage is:
+  div #{vehiclemileage}
+  div.row
+  div(class='vehicleAttr mr-3') Vehicle wheel number is:
+  div #{vehiclenumwheels}

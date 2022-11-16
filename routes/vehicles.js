@@ -5,5 +5,7 @@ var router = express.Router();
 
 router.get('/detail', vehicle_controllers.vehicle_view_one_Page);
 
+router.get('/create', vehicle_controllers.vehicle_create_Page);
+
 
 module.exports = router;

@@ -26,5 +26,8 @@ router.get('/vehicles/:id', vehicle_controller.vehicle_detail); //
  
 // GET request for list of all Vehicle items. 
 router.get('/vehicles', vehicle_controller.vehicle_list); 
+
+/* GET create vehicle page */ 
+router.get('/create', vehicle_controller.vehicle_create_Page);
  
 module.exports = router; 

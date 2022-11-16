@@ -29,5 +29,8 @@ router.get('/vehicles', vehicle_controller.vehicle_list);
 
 /* GET create vehicle page */ 
 router.get('/create', vehicle_controller.vehicle_create_Page);
+
+/* GET create update page */ 
+router.get('/update', vehicle_controller.vehicle_update_Page);
  
 module.exports = router; 

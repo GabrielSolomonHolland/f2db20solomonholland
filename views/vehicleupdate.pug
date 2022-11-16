@@ -1,0 +1,53 @@
+extends layout
+block content
+  h1= title
+
+  if (toShow == null)
+    h2 No instance to delete
+  else
+    - var vehicleid = toShow._id
+    - var model = toShow.model
+    - var vehiclemileage = toShow.mileage
+    - var vehiclenumWheels = toShow.numWheels
+
+  div(id='loader', style='display: none;')
+
+  h4 Vehicle ID is: #{vehicleid}
+
+  form(id='VehicleForm', action=`/resource/vehicles/${vehicleid}`, method="PUT")
+    div.form-group
+        label.vehicleAttr(for='model') Vehicles Model
+        input#model(type='text', name='model', value=model)
+    div.form-group
+        label.vehicleAttr(for='numWheels') Vehicle Number of wheels
+        input#numWheels(type='number', name='numWheels', value=vehiclenumWheels)
+    div.form-group
+        label.vehicleAttr(for='mileage') Vehicle mileage
+        input#mileage(type='number', name='mileage', value=vehiclemileage)
+    input(type="submit")
+
+  script.
+    document.forms['VehicleForm'].addEventListener('submit', (event) => {
+        event.preventDefault();
+
+        document.getElementById('loader').style.display = 'block';
+        document.getElementById('VehicleForm').style.display = 'none';
+        
+        fetch(event.target.action, {
+            method: 'PUT',
+            body: new URLSearchParams(new FormData(event.target)) // event.target is the form
+        }).then((resp) => {
+            return resp.json(); // or resp.text() or whatever the server sends
+        }).then((body) => {
+            alert("Save succeded")
+            // TODO handle body
+        }).catch((error) => {
+            // TODO handle error
+            alert("Save failed " + error )
+            document.getElementById('loader').style.display = 'none';
+            document.getElementById('VehicleForm').style.display = 'block';
+        });
+
+        document.getElementById('loader').style.display = 'none';
+        document.getElementById('VehicleForm').style.display = 'block';
+    });

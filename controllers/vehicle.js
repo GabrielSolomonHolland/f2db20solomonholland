@@ -94,7 +94,6 @@ exports.vehicle_view_all_Page = async function(req, res) {
 
 exports.vehicle_view_one_Page = async function(req, res) { 
     console.log("single view for id "  + req.query.id) 
-    const queryObject = url.parse(req.url, true).query;
     try { 
         result = await Vehicle.findById( req.query.id) 
         res.render('vehicledetail', { title: 'Vehicle Detail', toShow: result }); 
@@ -118,3 +117,16 @@ exports.vehicle_create_Page =  function(req, res) {
     } 
 }; 
 
+
+
+exports.vehicle_update_Page =  async function(req, res) { 
+    console.log("update view for item "+req.query.id) 
+    try{ 
+        let result = await Vehicle.findById(req.query.id) 
+        res.render('vehicleupdate', { title: 'Vehicle Update', toShow: result }); 
+    } 
+    catch(err){ 
+        res.status(500) 
+        res.send(`{'error': '${err}'}`); 
+    } 
+};

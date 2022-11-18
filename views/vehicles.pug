@@ -10,10 +10,19 @@ block content
 
   div.container-fluid
   each i in items
+    -let destination = `dispatch(\"/vehicle/update?id=${i._id}\")` 
     div.row=i["model"]
       div.col-sm-2="Mileage: " + i["mileage"]
       div.col-sm-2="Number of wheels: " + i["numWheels"]
       div.col-sm-2="Maximum speed: " + i["maxSpeed"]
+      button.btn( class="btn-primary ml-1", onclick= destination) Update 
 
+  script. 
+    function dispatch(path){ 
+      window.location.href=path 
+    } 
   //const car = {type:"Fiat", model:"500", color:"white"};
-  //so attributes will be: model (string), mileage(number), num of wheels (guess the data type :p), max speed (num)
+  script. 
+    function dispatch(path){ 
+      window.location.href=path 
+    } 

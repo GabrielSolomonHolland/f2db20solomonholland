@@ -2,6 +2,7 @@ var express = require('express');
 const vehicle_controllers= require('../controllers/vehicle');
 var router = express.Router();
 
+router.get('/', vehicle_controllers.vehicle_view_all_Page);
 
 router.get('/detail', vehicle_controllers.vehicle_view_one_Page);
 

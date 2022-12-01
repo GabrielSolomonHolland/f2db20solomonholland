@@ -33,7 +33,7 @@ router.get('/create', vehicle_controller.vehicle_create_Page);
 /* GET create update page */ 
 router.get('/update', vehicle_controller.vehicle_update_Page);
 
-/* GET delete bike page */
+/* GET delete page */
 router.get('/delete', vehicle_controller.vehicle_delete_Page);
  
 module.exports = router; 

@@ -10,12 +10,16 @@ block content
 
   div.container-fluid
   each i in items
-    -let destination = `dispatch(\"/vehicle/update?id=${i._id}\")` 
+    -let update = `dispatch(\"/vehicle/update?id=${i._id}\")`
+    -let detail = `dispatch(\"/vehicle/detail?id=${i._id}\")`
+    -let del = `dispatch(\"/vehicle/delete?id=${i._id}\")` 
     div.row=i["model"]
       div.col-sm-2="Mileage: " + i["mileage"]
       div.col-sm-2="Number of wheels: " + i["numWheels"]
       div.col-sm-2="Maximum speed: " + i["maxSpeed"]
-      button.btn( class="btn-primary ml-1", onclick= destination) Update 
+      button.btn( class="btn-primary ml-1", onclick= update) Update 
+      button.btn( class="btn-primary ml-1", onclick= detail) Detail 
+      button.btn( class="btn-primary ml-1", onclick= del) Delete       
 
   script. 
     function dispatch(path){ 
